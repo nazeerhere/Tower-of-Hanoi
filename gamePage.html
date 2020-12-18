@@ -15,24 +15,53 @@
     <div id="gameScreen">
         <div class="poleSpace">
 
-            <!-- the pole and base together -->
-            <div class="stand">
-                <div class="pole" id="firstPole"></div>
-                <div class="base"></div>
+            <!-- the pole, base and disc together -->
+            <div class="hanoi">
+                
+                <!-- something to help me make test -->
+                <div id="playThing"></div>
+                
+                <!-- the disc -->
+                <div class="demoDisc">
+                    <div class="ball" id="left"></div>
+                    <div class="ball" id="right"></div>
+                </div>
+                
+                <!-- the pole and base together -->
+                <div class="stand">
+                    <div class="pole" id="firstPole"></div>
+                    <div class="base"></div>
+                </div>
+            
             </div>
             
-            <div class="stand">
-                <div class="pole"></div>
-                <div class="base"></div>
+
+            <div class="hanoi">
+
+                <!-- special section for the disc -->
+                <div class="discScreen" id="DScreen2"></div>
+                <div class="stand" id="stand2">
+                    <div class="pole"></div>
+                    <div class="base"></div>
+                </div>
             </div>
             
-            <div class="stand">
-                <div class="pole"></div>
-                <div class="base"></div>
+            
+            <div class="hanoi">
+
+                <div class="stand">
+                    <div class="pole"></div>
+                    <div class="base"></div>
+                </div>
             </div>
-        
+
+            
         </div>
     </div>
+    <!-- <div class="discScreen">
+        
+    </div> -->
     <div class="toolBar"></div>
+    <script src="script.js"></script>
 </body>
 </html>
