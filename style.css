@@ -6,7 +6,7 @@ body {
 
 /* space between each stand */
 .poleSpace {
-    background-color: darkorange;
+    /* background-color: darkorange; */
     display: flex;
     width: 100%;
     justify-content: space-around;
@@ -28,7 +28,7 @@ body {
 .stand {
     display: flex;
     flex-direction: column;
-    background-color: salmon;
+    /* background-color: salmon; */
     width: 175px;
     height: 250px;
     opacity: .85;
@@ -58,13 +58,12 @@ body {
 /* the disc itself */
 .demoDisc {
     height: 6vh;
-    width: 65%;
+    width: 72%;
     background-color: cornsilk;
-    /* margin-left: 40px; */
     z-index: 1;
-    position: relative;
-    top: 455%;
-    left: 4vh;
+    /* position: relative; */
+    /* top: 455%;
+    left: 70.4vh; */
     display: flex;
     justify-content: space-between;
     box-shadow: 0px 0px 80px 0px skyblue;
@@ -116,11 +115,14 @@ body {
 .discScreen {
     height: 27vh;
     width: 100%;
-    background-color: yellow;
-    opacity: .35;
+    /* background-color: yellow; */
+    /* opacity: .35; */
     position: relative;
     top: 100%;
+    left: 13%;
     z-index: 1;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 #playThing {
@@ -130,5 +132,10 @@ body {
     z-index: 2;
     border: 3px solid tomato;
     position: absolute;
-    text-align: center;
+    text-align: center
+    
+}
+
+.test {
+    background-color: thistle;
 }
