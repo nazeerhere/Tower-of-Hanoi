@@ -7,4 +7,6 @@ const discScreenId2 = document.querySelector("#DScreen2")
 
 const playThing = document.getElementById("playThing")
 playThing.style.background = "pink"
+playThing.style.left = "10px"
+
 
