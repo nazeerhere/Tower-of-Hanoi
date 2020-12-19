@@ -6,7 +6,6 @@ body {
 
 /* space between each stand */
 .poleSpace {
-    /* background-color: darkorange; */
     display: flex;
     width: 100%;
     justify-content: space-around;
@@ -20,7 +19,6 @@ body {
 .hanoi {
     display: grid;
     /* background-color: crimson; */
-    /* flex-flow: column wrap; */
 
 
 }
@@ -32,7 +30,6 @@ body {
     width: 175px;
     height: 250px;
     opacity: .85;
-    /* z-index: -1; */
 }
 
 .pole {
@@ -61,7 +58,6 @@ body {
     width: 72%;
     background-color: cornsilk;
     z-index: 1;
-    /* position: relative; */
     /* top: 455%;
     left: 70.4vh; */
     display: flex;
@@ -116,7 +112,6 @@ body {
     height: 27vh;
     width: 100%;
     /* background-color: yellow; */
-    /* opacity: .35; */
     position: relative;
     top: 100%;
     left: 13%;
