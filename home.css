@@ -1,0 +1,14 @@
+body {
+    background-color: black;
+    margin: auto;
+    width: 50%;
+    border: 3px inset green;
+    padding: 5%;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    
+}

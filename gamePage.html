@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOWER OF HANOI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <form action="index.html">
+        <input type="submit" value="Home">
+    </form>
+    <form action="winPage.html">
+        <input type="submit" value="winpage">
+    </form>
+
+    <input id="reset" type="button"  value="Reset" onclick="reset()">
+
+    <span>
+        <div id="score"></div>
+    </span>
+
+
+    <div id="gameScreen">
+
+        <div class="poleSpace">
+
+            <!-- the pole, base and disc together -->
+            <div class="hanoi">
+                
+                <!-- something to help me make test -->
+                <div id="playThing">Drag me</div>
+                
+                <!-- the disc Screen-->
+                <div class="discScreen" id="DScreen"></div>
+                
+                <!-- the pole and base together -->
+                <div class="stand">
+                    <div class="pole" id="firstPole"></div>
+                    <div class="base"></div>
+                </div>
+            
+            </div>
+            
+
+            <div class="hanoi">
+
+                <!-- special section for the disc -->
+                <div class="discScreen" id="DScreen2"></div>
+                <div class="stand" id="tester">
+                    <div class="pole"></div>
+                    <div class="base"></div>
+                </div>
+            </div>
+            
+            
+            <div class="hanoi">
+
+                <div class="discScreen" id="DScreen3"></div>
+                <div class="stand">
+                    <div class="pole"></div>
+                    <div class="base"></div>
+                </div>
+            </div>
+
+            
+        </div>
+    </div>
+        
+    </div> 
+    <script type="module" src="script.js"></script>
+    <script type="module" src="drag.js"></script>
+    <div class="toolBar">
+        <input type="button" id="btnAdd" value="fix" onclick="popDisc()"/>
+        <input type="button" id="btn2Add" value="this" onclick="popDisc2()"/>
+        <input type="button" id="btn3Add" value="function" onclick="popDisc3()"/>
+    </div>
+</body>
+</html>
