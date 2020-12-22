@@ -4,6 +4,17 @@ body {
 
 }
 
+span {
+    width: 40%;
+    text-align: center;
+}
+
+#reset {
+    text-align: right;
+    margin-right: 3vh;
+
+}
+
 /* space between each stand */
 .poleSpace {
     display: flex;
@@ -97,7 +108,11 @@ body {
     
 }
 
-
+/* game score */
+#score{
+    color: white;
+    font-size: 32px;
+}
 
 /* the game screen/background */
 #gameScreen {
@@ -134,5 +149,3 @@ body {
     text-align: center
     
 }
-
-/* Win Page */

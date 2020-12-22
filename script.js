@@ -1,27 +1,22 @@
 console.log("This works! check check")
 
 import {dragElement} from './drag.js';
+var gameScore = 0 
 
 
-const tester = document.querySelector("#tester")
-const stand = document.querySelector(".stand")
-const hanoi = document.querySelector(".hanoi")
-const demoDisc = document.querySelector(".demoDisc");
-const num5 = document.getElementById("5")
+// var startValue = document.getElementById("myInput").value;
+// console.log(startValue)
 
 // an example for other buttons ill be using
 document.getElementById("btnAdd").onclick = popDisc
 document.getElementById("btn2Add").onclick = popDisc2
 document.getElementById("btn3Add").onclick = popDisc3
+document.getElementById("reset").onclick = reset
 
 // all the buttons that affect the disk and towers
-const button1 = document.getElementById("btnAdd")
-const button2 = document.getElementById("btn2Add")
-const button3 = document.getElementById("btn3Add")
 
 
-// document.getElementById("btn2Add") = 
-// document.getElementById("btn3Add") = 
+const score = document.getElementById("score")
 
 // all the disc screens
 const discScreenId = document.querySelector("#DScreen")
@@ -38,7 +33,6 @@ class Tower {
 
     addDisc(num=1) {
         createDiscNode(this.screenName, num)
-        console.log(num)
     
     }
     removeDisc() {
@@ -91,9 +85,6 @@ function createDiscNode(selectedScreen, num=3) {
         // send disc to one of the towers
         for (let index = 0; index < discCollection.length; index++) {
             
-            // add click event to show disc has been selected
-            discCollection[index].addEventListener("click", moveDisc)
-            
             const element = discCollection[index];
             element.value = index * 5
             element.id = element.value
@@ -103,7 +94,8 @@ function createDiscNode(selectedScreen, num=3) {
                 5: "red",
                 10: "darkmagenta",
                 15: "darkorange", 
-                20: "yellow"
+                20: "yellow",
+                25: "#3d9640"
             }
 
             // give the disc a color based on their value
@@ -122,56 +114,36 @@ function createDiscNode(selectedScreen, num=3) {
 
 
 function popDisc() {
-
     tower1.addDisc()
+    gameScore++
+    console.log(gameScore)
+    score.innerHTML = "moves made: " + gameScore;
+
 }
 function popDisc2() {
-    let counter = 0
     tower2.addDisc()
-    counter += 1
-    console.log(counter)
+    gameScore++
+    console.log(gameScore)
+    score.innerHTML = "moves made: " + gameScore;
 
 }
 function popDisc3() {
     if(tower3.length !== 0 || tower3[-1].value > discScreenId3.value) {
         tower3.addDisc()
+        gameScore++
+        score.innerHTML = "moves made: " + gameScore;
+
     }
 }
 
         // if(tower.length === 0 || tower[-1].value > selectedDisc.value) {
     // }
 
-
-
-function moveDisc() {
-    this.style.border = "thick solid white"
-    dragElement(this);
-    if(dragElement) {
-        console.log("this is true see me here!!!")
-    }
-    
-}    
-
-function pushDiscNode(selectedDisc, tower) {
-    if(tower.length === 0 || tower[-1].weight > selectedDisc.weight) {
-        tower.push(selectedDisc)
-    }
+function reset() {
+    document.location.href = ""
 }
 
-
-// RN it only works for tower1
-function pushToTower(element) {
-
-    for(let i=0; i < element.length; i++) {
-
-        if(tower.length === 0 || element.value < tower[-1].value) {
-        } {
-            tower2.push(element[i])
-        }
-
-}
-}
-// console.log(tower1)
 
 // start game
 tower1.addDisc(5)
+score.innerHTML = "moves made: " + gameScore;
