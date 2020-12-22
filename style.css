@@ -105,7 +105,8 @@ span {
     background-color: deepskyblue;
     display: flex;
     justify-content: space-around;
-    
+    font-size: 48px;
+    color: darkslateblue;
 }
 
 /* game score */
@@ -131,7 +132,7 @@ span {
     width: 100%;
     /* background-color: darkorange; */
     position: relative;
-    top: 93.7%;
+    top: 100%;
     left: 13%;
     /* opacity: 50%; */
     z-index: 1;

@@ -1,10 +1,10 @@
 console.log("This works! check check")
 
 import {dragElement} from './drag.js';
+// import {} from './index.html'
 var gameScore = 0 
 
 
-// var startValue = document.getElementById("myInput").value;
 // console.log(startValue)
 
 // an example for other buttons ill be using
@@ -12,10 +12,11 @@ document.getElementById("btnAdd").onclick = popDisc
 document.getElementById("btn2Add").onclick = popDisc2
 document.getElementById("btn3Add").onclick = popDisc3
 document.getElementById("reset").onclick = reset
+// document.getElementById("myInput").onclick = getInputValue
 
 // all the buttons that affect the disk and towers
 
-
+const toolBar = document.querySelector(".toolBar")
 const score = document.getElementById("score")
 
 // all the disc screens
@@ -32,11 +33,17 @@ class Tower {
     }
 
     addDisc(num=1) {
+        // if(tower3.length !== 0 || tower3[-1].value > discScreenId3.value) {
+        // }
         createDiscNode(this.screenName, num)
+        // this.emptyList.append()
     
     }
     removeDisc() {
+        if(this.screenName.firstElementChild) {
 
+            this.screenName.removeChild(this.screenName.firstElementChild)
+        }
     }
 } 
 
@@ -55,11 +62,12 @@ playThing.style.background = "pink"
 
 
 // the seleced screen will be one of the 3 disc screens
+let discCollection = []
 function createDiscNode(selectedScreen, num=3) {
     // empty list to hold the disc
-    let discCollection = []
+    discCollection = []
     for(let i =0; i < num; i++) {
-
+        
         // create the base of the disc
         let newNode = document.createElement('div')
         newNode.className = "demoDisc"
@@ -107,13 +115,17 @@ function createDiscNode(selectedScreen, num=3) {
             }
         }
     }
-
+    // console.log(discCollection)
 }
+console.log(discCollection)
 
 // this section is for the button functionality
 
 
 function popDisc() {
+    if(tower2.length != 0) {
+        tower2.removeDisc()
+    }
     tower1.addDisc()
     gameScore++
     console.log(gameScore)
@@ -121,27 +133,46 @@ function popDisc() {
 
 }
 function popDisc2() {
+    if(tower3.length != 0) {
+        tower3.removeDisc()
+    }
     tower2.addDisc()
     gameScore++
     console.log(gameScore)
     score.innerHTML = "moves made: " + gameScore;
 
 }
+
+// load win page
+function winPage() {
+    document.location.href = "winpage.html"
+}
+
 function popDisc3() {
-    if(tower3.length !== 0 || tower3[-1].value > discScreenId3.value) {
+    if(tower1.length != 0) {
+        tower1.removeDisc()
+    }
         tower3.addDisc()
         gameScore++
         score.innerHTML = "moves made: " + gameScore;
-
-    }
+        console.log(discScreenId3.childNodes.length)
+        
+        // win condition 
+        if(discScreenId3.childNodes.length === 5) {
+        toolBar.innerHTML = "WELL DONE!! The game is over"
+        setTimeout(winPage, 3500)
+}
+}
+function getInputValue() {
+    var startValue = document.getElementById("myInput").value;
+    return startValue
 }
 
-        // if(tower.length === 0 || tower[-1].value > selectedDisc.value) {
-    // }
 
 function reset() {
     document.location.href = ""
 }
+
 
 
 // start game
