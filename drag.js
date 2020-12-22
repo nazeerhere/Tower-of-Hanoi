@@ -1,7 +1,7 @@
 // Make the DIV element draggable:
-dragElement(document.getElementById("playThing"));
 
-function dragElement(elmnt) {
+
+export function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "header")) {
     // if present, the header is where you move the DIV from:
@@ -20,6 +20,7 @@ function dragElement(elmnt) {
     document.onmouseup = closeDragElement;
     // call a function whenever the cursor moves:
     document.onmousemove = elementDrag;
+    // console.log("this works!!s")
   }
 
   function elementDrag(e) {
@@ -33,11 +34,14 @@ function dragElement(elmnt) {
     // set the element's new position:
     elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    // console.log("this works!! yay")
+
   }
 
   function closeDragElement() {
     // stop moving when mouse button is released:
     document.onmouseup = null;
     document.onmousemove = null;
+    // console.log("final statement, this works!!")
   }
 }

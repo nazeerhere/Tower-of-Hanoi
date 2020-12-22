@@ -12,6 +12,9 @@
     <form action="index.html">
         <input type="submit" value="Home">
     </form>
+    <form action="winPage.html">
+        <input type="submit" value="winpage">
+    </form>
     <div id="gameScreen">
         <div class="poleSpace">
 
@@ -37,7 +40,7 @@
 
                 <!-- special section for the disc -->
                 <div class="discScreen" id="DScreen2"></div>
-                <div class="stand" id="stand2">
+                <div class="stand" id="tester">
                     <div class="pole"></div>
                     <div class="base"></div>
                 </div>
@@ -58,8 +61,12 @@
     </div>
         
     </div> 
-    <div class="toolBar"></div>
-    <script src="script.js"></script>
-    <script src="drag.js"></script>
+    <script type="module" src="script.js"></script>
+    <script type="module" src="drag.js"></script>
+    <div class="toolBar">
+        <input type="button" id="btnAdd" value="fix" onclick="popDisc()"/>
+        <input type="button" id="btn2Add" value="this" onclick="popDisc2()"/>
+        <input type="button" id="btn3Add" value="function" onclick="popDisc3()"/>
+    </div>
 </body>
 </html>

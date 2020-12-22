@@ -82,6 +82,7 @@ body {
 #right {
     position: relative;
     right: -25%;
+    color: darkmagenta;
 }
 
 
@@ -91,6 +92,8 @@ body {
     width: 100%;
     height: 100px;
     background-color: deepskyblue;
+    display: flex;
+    justify-content: space-around;
     
 }
 
@@ -111,10 +114,11 @@ body {
 .discScreen {
     height: 27vh;
     width: 100%;
-    /* background-color: yellow; */
+    /* background-color: darkorange; */
     position: relative;
-    top: 100%;
+    top: 93.7%;
     left: 13%;
+    /* opacity: 50%; */
     z-index: 1;
     display: flex;
     flex-direction: column-reverse;
@@ -131,6 +135,4 @@ body {
     
 }
 
-.test {
-    background-color: thistle;
-}
+/* Win Page */
