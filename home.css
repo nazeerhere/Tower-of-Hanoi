@@ -1,14 +1,22 @@
 body {
-    background-color: black;
+    background-image: url(HanoiPic.jpg);
+    background-size: 100%;
     margin: auto;
     width: 50%;
-    border: 3px inset green;
     padding: 5%;
     text-align: center;
+}
+.empDiv {
+    background-color: black;
+    border: 3px inset green;
+    width: auto;
+    height: auto;
+    padding: 5vh;
 }
 
 form {
     display: flex;
     justify-content: center;
+    background-color: black;
     
 }

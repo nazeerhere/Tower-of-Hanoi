@@ -10,10 +10,10 @@
 <body>
 
     <form action="index.html">
-        <input type="submit" value="Home">
+        <input class="menu" type="submit" value="Home">
     </form>
 
-    <input id="reset" type="button"  value="Reset" onclick="reset()">
+    <input class="menu" id="reset" type="button"  value="Reset" onclick="reset()">
 
     <span>
         <div id="score"></div>
@@ -32,12 +32,16 @@
                 <div id="BS"></div>
                 
                 <!-- the disc Screen-->
-                <div class="discScreen" id="DScreen"></div>
+                <div class="discScreen" id="DScreen">
+                </div>
                 
                 <!-- the pole and base together -->
                 <div class="stand">
                     <div class="pole" id="firstPole"></div>
-                    <div class="base"></div>
+                    <div class="base">
+                        <div class="act" id="active"></div>
+                        
+                    </div>
                 </div>
             
             </div>
@@ -49,7 +53,9 @@
                 <div class="discScreen" id="DScreen2"></div>
                 <div class="stand" id="tester">
                     <div class="pole"></div>
-                    <div class="base"></div>
+                    <div class="base">
+                        <div class="act" id="active2"></div>
+                    </div>
                 </div>
             </div>
             
@@ -59,7 +65,9 @@
                 <div class="discScreen" id="DScreen3"></div>
                 <div class="stand">
                     <div class="pole"></div>
-                    <div class="base"></div>
+                    <div class="base">
+                        <div class="act" id="active3"></div>
+                    </div>
                 </div>
             </div>
 
@@ -71,9 +79,9 @@
     <script type="module" src="script.js"></script>
     <script type="module" src="drag.js"></script>
     <div class="toolBar">
-        <input type="button" id="btnAdd" value="fix" onclick="popDisc()"/>
-        <input type="button" id="btn2Add" value="this" onclick="popDisc2()"/>
-        <input type="button" id="btn3Add" value="function" onclick="popDisc3()"/>
+        <input type="button" class="btn" id="btnAdd" value="" onclick="popDisc()"/>
+        <input type="button" class="btn" id="btn2Add" value="" onclick="popDisc2()"/>
+        <input type="button" class="btn" id="btn3Add" value="" onclick="popDisc3()"/>
     </div>
 </body>
 </html>
