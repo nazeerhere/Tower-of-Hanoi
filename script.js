@@ -4,31 +4,12 @@ import {dragElement} from './drag.js';
 // import {} from './index.html'
 var gameScore = 0 
 let discLimit = prompt("how many disc would you like to start with? 6 is the limit")
+
 if(discLimit > 6) {
     discLimit = 6
 }
 
 
-// const active = document.getElementById("active")
-// const active2 = document.getElementById("active2")
-// const active3 = document.getElementById("active3")
-
-// function setActive(event) {
-//     if(isActive === true) {
-//         event.style.backgroundColor = "red"
-//         isActive = false
-//     } else {
-//         // event.style.boxShadow = "0px 2px 2px 2px cornflowerblue inset"
-//         event.style.backgroundColor = "blue"
-//         isActive = true
-//     }
-//     // console.log("is active statement: " + setActive())
-// }
-// active.addEventListener("click", setActive(active))
-// active2.addEventListener("click", setActive(active2))
-// active3.addEventListener("click", setActive(active3))
-
-// console.log(startValue)
 
 // an example for other buttons ill be using
 document.getElementById("btnAdd").onclick = popDisc
@@ -45,28 +26,37 @@ const score = document.getElementById("score")
 const discScreenId = document.querySelector("#DScreen")
 const discScreenId2 = document.querySelector("#DScreen2")
 const discScreenId3 = document.querySelector("#DScreen3")
+discScreenId.addEventListener("click", (event) => {
+    if(event.target.className === "discScreen") {
+        console.log(event.target.className)
+        discScreenId.append(selected)
 
+    }
+})
+
+discScreenId2.addEventListener("click", (event) => {
+    discScreenId2.append(selected)
+})
+
+discScreenId3.addEventListener("click", (event) => {
+    discScreenId3.append(selected)
+})
 
 
 class Tower {
     constructor(screenName) {
         this.screenName = screenName
-        this.emptyList = []
-        this.colors = {
-            0: "aqua",
-            5: "red",
-            10: "darkmagenta",
-            15: "darkorange", 
-            20: "yellow",
-            25: "#3d9640"
-        }
     }
 
     addDisc(num=1) {
-        createDiscNode(this.screenName, num)
-        // this.emptyList.push()
-
+        
+        if(discCollection.length < discLimit) {
+            createDiscNode(this.screenName, num)
+            console.log(discCollection.lengths)
+        }
+        
     }
+
     removeDisc() {
         if(this.screenName.firstElementChild) {
             this.emptyList.push(this.screenName.firstElementChild.value)
@@ -86,38 +76,23 @@ const playThing = document.getElementById("playThing")
 dragElement(playThing);
 playThing.style.background = "pink"
 
-
-
-
+        
 let newList = []
 
-
+let selected;
 // the seleced screen will be one of the 3 disc screens
 let newNode, ballL, ballR
 // an empty array to hold the disc pushed to it
 var discCollection = []
 function createDiscNode(selectedScreen, num=3) {
     // empty list to hold the disc
-    // discCollection = []
+    discCollection = []
+
     for(let i =0; i < num; i++) {
 
         // create the base of the disc
         newNode = document.createElement('div')
         newNode.className = "demoDisc"
-        
-        // create the left edge of the disc
-        ballL = document.createElement('div')
-        ballL.className = "ball"
-        ballL.setAttribute("id", "left")
-        
-       
-        // the right
-        ballR = document.createElement('div')
-        ballR.className = "ball"
-        ballR.setAttribute("id", "right")
-        
-        // put the disc together
-        newNode.append(ballL, ballR)
         
         // push new disc to list
         discCollection.push(newNode)
@@ -125,14 +100,27 @@ function createDiscNode(selectedScreen, num=3) {
         newList.push(newNode)
         selectedScreen.appendChild(newNode)
     
+    
         // send disc to one of the towers
-        for (let index = 0; index < discCollection.length; index++) {
-            
+        for (let index=0; index < discCollection.length; index++) {
             
             const element = discCollection[index];
-            element.value = index * 5
-            element.id = element.value
-            
+            // element.dataset-value = index * 5
+            element.setAttribute("data-value", (index * 5))
+            element.id = index * 5
+
+            element.addEventListener("click", (event) => {
+                let currentTower = event.target.parentElement
+                let discArray = Array.from(currentTower.children)
+                
+                if(discArray[discArray.length -1].id === event.target.id) {
+                    selected = document.getElementById(`${event.target.id}`)
+
+                }
+
+
+            })
+
             const colors = {
                 0: "aqua",
                 5: "yellow",
@@ -141,34 +129,30 @@ function createDiscNode(selectedScreen, num=3) {
                 20: "darkmagenta",
                 25: "#3d9640"
             }
-
             // give the disc a color based on their value
-                element.style.backgroundColor = colors[element.value]
-                ballR.style.backgroundColor = colors[element.value]
-                ballL.style.backgroundColor = colors[element.value]
+                element.style.backgroundColor = colors[element.dataset.value]
         }
     }
 }
 // console.log(newList)
 
 
+// start game
+tower1.addDisc(discLimit)
+score.innerHTML = "MOVES MADE: " + gameScore;
+
 
 
 // this section is for the button functionality
-let topElement1 = discScreenId[-1]
-console.log(topElement1)
-console.log(discScreenId)
-console.log(discScreenId.children[0])
-console.log(discScreenId.firstChild)
-
 function popDisc() {
 
-    if(isActive === true) {
-        if(tower1.length != 0 || tower3[-1].value > tower1[-1].value) {
-            tower2.removeDisc()
-            this
-        }
-    }
+    // if(tower2.length != 0 || tower3[-1].value > tower1[-1].value) {
+    // }
+        tower2.removeDisc()
+        discCollection.shift();
+        console.log(discCollection)
+
+    
     tower1.addDisc()
     gameScore++
     score.innerHTML = "MOVES MADE: " + gameScore;
@@ -177,10 +161,14 @@ function popDisc() {
 function popDisc2() {
     if(tower3.length != 0 || tower3[-1].value > tower1[-1].value) {
         tower3.removeDisc()
+        discCollection.shift();
+        console.log(discCollection)
+
     }
-    tower2.addDisc()
+    
+    tower2.addDisc(1)
     gameScore++
-    score.innerHTML = "moves made: " + gameScore;
+    score.innerHTML = "MOVES MADE: " + gameScore;
 
 }
 
@@ -192,10 +180,14 @@ function winPage() {
 function popDisc3() {
     if(tower1.length != 0 || tower3[-1].value > tower1[-1].value) {
         tower1.removeDisc()
+        discCollection.shift();
+        console.log(discCollection)
+        console.log(tower3[-1])
+
     }
-        tower3.addDisc()
+        tower3.addDisc(1)
         gameScore++
-        score.innerHTML = "moves made: " + gameScore;
+        score.innerHTML = "MOVES MADE: " + gameScore;
         
         // win condition 
         if(discScreenId3.childNodes.length >= discLimit) {
@@ -209,12 +201,7 @@ function reset() {
     document.location.href = ""
 }
 
-// var x = document.createElement('input')
-// x.setAttribute("type", "search")
 
 
 
-// start game
-tower1.addDisc(discLimit)
-score.innerHTML = "MOVES MADE: " + gameScore;
-// console.log("Disc collection here: " + discCollection)
+
