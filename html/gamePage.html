@@ -5,21 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOWER OF HANOI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/button.css">
 </head>
 <body>
 
-    <form action="index.html">
-        <input class="menu" type="submit" value="Home">
-    </form>
+    <div id="topSpace">
+    
+        <form action="index.html">
+            <button class="home"><i class="fa fa-home"></i></button>
+        </form>
 
-    <input class="menu" id="reset" type="button"  value="Reset" onclick="reset()">
+    <input class="menu btn" id="reset" type="button"  value="Reset" onclick="reset()">
+    <!-- <span id="ruleSpan">
+    </span> -->
+        <button id="gameRules">Game Rules</button>
+    </div>
 
     <span>
         <div id="score"></div>
     </span>
 
+    <div id="ruleModal">
+        <div id="modal-textbox">
+
+            <h1 id="modalTitle">Learn to Play:</h1>
+            <p>Click on the red disk and move it to any of the other two towers to start the game. The disk are arranged in rainbow order- ROYGBIV, with white and black being the last two colors, if 8 disk are selected. 
+                The goal of the puzzle is to move all the disks from the leftmost peg
+                to the rightmost peg, adhering to the following rules:</p>
+                <ol>
+                    <li>Move only one disk at a time.</li>
+                    <li>The disk may not be placed out of order (e.g., since red will always be the color on top
+                        it can be placed on any other disk, but none of the other disk can be placed on top of red.)</li>
+                    <li>All disks, except the one being moved, must be on a peg.</li>
+                </ol>
+                
+                <p> Side note: If you're having trouble finding where to click, toggle the little brown "i" button under
+                    the towers. A back screen will show where you can click to add the disk.
+                </p>
+
+                <div id="modal-footer">
+                    <a id="closeModal" href="#">Close</a>
+                </div>
+        </div>
+    </div>
 
     <div id="gameScreen">
 
@@ -30,19 +60,14 @@
                 
                 <!-- something to help me make test -->
                 <div id="playThing">Drag me</div>
-                <div id="BS"></div>
                 
                 <!-- the disc Screen-->
-                <div class="discScreen" id="DScreen">
-                </div>
+                <div class="discScreen" id="DScreen"></div>
                 
                 <!-- the pole and base together -->
-                <div class="stand">
+                <div class="stand" id="stan">
                     <div class="pole" id="firstPole"></div>
-                    <div class="base">
-                        <div class="act" id="active"></div>
-                        
-                    </div>
+                    <div class="base"></div>
                 </div>
             
             </div>
@@ -52,11 +77,9 @@
 
                 <!-- special section for the disc -->
                 <div class="discScreen" id="DScreen2"></div>
-                <div class="stand" id="tester">
+                <div class="stand" id="stan2">
                     <div class="pole"></div>
-                    <div class="base">
-                        <div class="act" id="active2"></div>
-                    </div>
+                    <div class="base"></div>
                 </div>
             </div>
             
@@ -64,11 +87,9 @@
             <div class="hanoi">
 
                 <div class="discScreen" id="DScreen3"></div>
-                <div class="stand">
+                <div class="stand" id="stan3">
                     <div class="pole"></div>
-                    <div class="base">
-                        <div class="act" id="active3"></div>
-                    </div>
+                    <div class="base"></div>
                 </div>
             </div>
 
@@ -77,12 +98,39 @@
     </div>
         
     </div> 
+
     <div class="toolBar">
-        <input type="button" class="btn" id="btnAdd" value="" onclick="popDisc()"/>
-        <input type="button" class="btn" id="btn2Add" value="" onclick="popDisc2()"/>
-        <input type="button" class="btn" id="btn3Add" value="" onclick="popDisc3()"/>
-        
+
+        <div id="app">
+            <div class="base-timer">
+                <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <g class="base-timer__circle">
+                    <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+                    <path
+                      id="base-timer-path-remaining"
+                      stroke-dasharray="283"
+                      class="base-timer__path-remaining ${remainingPathColor}"
+                      d="
+                        M 50, 50
+                        m -45, 0
+                        a 45,45 0 1,0 90,0
+                        a 45,45 0 1,0 -90,0
+                      "
+                    ></path>
+                  </g>
+                </svg>
+                <span id="base-timer-label" class="base-timer__label">${formatTime(
+                  timeLeft
+                )}</span>
+            </div>
+        </div>
+
+        <span title="Show clickable area for the towers.">
+            <button id="i" value="OFF" onclick="showTowerColor()">i</button>
+        </span>
+
     </div>
+
     <script type="module" src="../script.js"></script>
     <script type="module" src="../drag.js"></script>
 </body>

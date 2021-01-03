@@ -6,14 +6,12 @@ body {
     text-align: center;
 }
 
-
-form {
+div {
+    padding: 5vh;
     display: flex;
     justify-content: space-between;
-    /* margin: ; */
-    padding: 5vh;
-}
 
+}
 
 #paBtn {
 background-color: #479e4a;
