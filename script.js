@@ -3,7 +3,6 @@ console.log("This works! check check")
 let discArray;
 
 
-// import {} from './index.html'
 var gameScore = 0 
 let discLimit = prompt("how many disc would you like to start with? choose a number 1-8")
 if(discLimit > 8) {
@@ -154,11 +153,11 @@ score.addEventListener("click", (event) => {
     
 // load win page
 function winPage() {
-    document.location.href = "winpage.html"
+    document.location.href = "winPage.html"
 }
 
 function losePage() {
-    document.location.href = "losepage.html"
+    document.location.href = "losePage.html"
 }
 
 
