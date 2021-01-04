@@ -2,15 +2,21 @@ console.log("This works! check check")
 
 let discArray;
 
+
 // import {} from './index.html'
 var gameScore = 0 
-let discLimit = prompt("how many disc would you like to start with? 8 is the limit")
+let discLimit = prompt("how many disc would you like to start with? choose a number 1-8")
 if(discLimit > 8) {
     discLimit = 8
+}
+if(discLimit === "null") {
+  discLimit = 3
 }
 
 document.getElementById("reset").onclick = reset
 document.getElementById("i").onclick = showTowerColor
+document.getElementById("playId").onclick = toggleTimerPlay
+document.getElementById("pauseId").onclick = toggleTimerPause
 
 const toolBar = document.querySelector(".toolBar")
 const score = document.getElementById("score")
@@ -28,22 +34,21 @@ const discScreenId3 = document.querySelector("#DScreen3")
 // button for showing the disc screen background
 const iBtn = document.querySelector("#i")
 
+// button to start the timer
+const timerBtn = document.querySelector(".timerBtn")
+
+// pause and play buttons
+const play = document.getElementById("playId")
+const pause = document.getElementById("pauseId")
+
 
 discScreenId.addEventListener("click", (event) => {
-    try {
     if( !event.target.lastChild || event.target.lastChild.dataset.value > selected.dataset.value ) {
         gameScore++
         score.innerHTML = "MOVES MADE: " + gameScore 
         console.log(event.target.id + " " + selected.dataset.value + " " + selected.style.backgroundColor)
-            discScreenId.append(selected)
+        discScreenId.append(selected)
         } 
-    }
-        catch(err) {
-            console.log("som' mo' bs: " + err)
-        }
-        finally {
-            discScreenId.append(selected)
-        }
 })
 
 discScreenId2.addEventListener("click", (event) => {
@@ -116,10 +121,7 @@ function createDiscNode(selectedScreen, num=3) {
                 
                 if(discArray[discArray.length -1].id === event.target.id) {
                     selected = document.getElementById(`${event.target.id}`)
-
                 }
-
-
             })
 
             const colors = {
@@ -154,6 +156,12 @@ score.addEventListener("click", (event) => {
 function winPage() {
     document.location.href = "winpage.html"
 }
+
+function losePage() {
+    document.location.href = "losepage.html"
+}
+
+
 // reset button
 function reset() {
     document.location.href = ""
@@ -180,10 +188,20 @@ function showTowerColor() {
 
 
 // Credit: Mateusz Rybczonec
+const minutes = {
+  1 : 3,
+  2 : 5,
+  3 : 20,
+  4 : 60,
+  5 : 150,
+  6 : 240,
+  7 : 300,
+  8 : 390
+}
 
 const FULL_DASH_ARRAY = 283;
-const WARNING_THRESHOLD = 10;
-const ALERT_THRESHOLD = 5;
+const WARNING_THRESHOLD = 100;
+const ALERT_THRESHOLD = 50;
 
 const COLOR_CODES = {
   info: {
@@ -199,22 +217,83 @@ const COLOR_CODES = {
   }
 };
 
-const TIME_LIMIT = 200;
+const TIME_LIMIT = minutes[discLimit];
 let timePassed = 0;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 
 
+
+
+document.getElementById("app").innerHTML = `
+<div class="base-timer">
+    <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <g class="base-timer__circle">
+        <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+        <path
+          id="base-timer-path-remaining"
+          stroke-dasharray="283"
+          class="base-timer__path-remaining ${remainingPathColor}"
+          d="
+            M 50, 50
+            m -45, 0
+            a 45,45 0 1,0 90,0
+            a 45,45 0 1,0 -90,0
+          "
+        ></path>
+      </g>
+    </svg>
+    <span id="base-timer-label" class="base-timer__label">${formatTime(
+      timeLeft
+    )}</span>
+</div>
+
+`
+
+
+function toggleTimerPlay() {
+  if(play.value == "paused") {
+    play.value = "play"
+    pause.value = "play"
+    play.style.opacity = "0.6"
+    play.style.cursor = "not-allowed"
+    pause.style.opacity = "1"
+    pause.style.cursor = "pointer"
+    discScreenId.style.opacity = "1"
+    discScreenId2.style.opacity = "1"
+    discScreenId3.style.opacity = "1"
+
+  } 
+}
+
+function toggleTimerPause() {
+   if(pause.value == "play") {
+      play.value = "paused"
+      pause.value = "paused"
+      pause.style.opacity = "0.6"
+      pause.style.cursor = "not-allowed"
+      play.style.opacity = "1"
+      play.style.cursor = "pointer"
+      discScreenId.style.opacity = "0"
+      discScreenId2.style.opacity = "0"
+      discScreenId3.style.opacity = "0"
+    }
+}
+
 startTimer();
+
 
 function onTimesUp() {
   clearInterval(timerInterval);
 }
 
-function startTimer() {
+ function startTimer() {
   timerInterval = setInterval(() => {
-    timePassed = timePassed += 1;
+    if(play.value === "play") {
+      timePassed = timePassed += 1;
+
+    }
     timeLeft = TIME_LIMIT - timePassed;
     document.getElementById("base-timer-label").innerHTML = formatTime(
       timeLeft
@@ -224,6 +303,8 @@ function startTimer() {
 
     if (timeLeft === 0) {
       onTimesUp();
+        toolBar.innerHTML = "What a disappointment"
+        setTimeout(losePage, 3500)
     }
   }, 1000);
 }

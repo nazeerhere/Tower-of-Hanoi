@@ -139,6 +139,47 @@
     padding: 10%;
   }
 
-  #app {
-      /* background-color: yellowgreen; */
-  }
+#timerBtn {
+      width: 7vh;
+}
+
+/* for the play button */
+#buttonBorder {
+  /* background-color: red; */
+  height: 65%;
+  position: relative;
+  top: 20%;
+  left: -7%;
+}
+
+#playId {
+  width: 0;
+  height: 0;
+  border-top:3vh solid transparent;
+  border-left: 4vh solid white;
+  border-bottom: 3vh solid transparent;
+  border-right: 0vh none transparent;
+  background-color: transparent;
+  position: relative;
+  top: -30%;
+  left: 25%;
+  cursor: pointer;
+}
+#playId:active {
+  border-left: 4vh solid turquoise;
+}
+#pauseId {
+  /* width: 0px; */
+  height: 6vh;
+  border-right: 12px solid white;
+  border-left: 12px solid white;
+  border-top: 0 none transparent;
+  border-bottom: 0 none transparent;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#pauseId:active {
+  border-left: 12px solid maroon;
+  border-right: 12px solid maroon;
+}
