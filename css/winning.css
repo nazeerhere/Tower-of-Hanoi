@@ -1,0 +1,55 @@
+/* Win Page */
+
+body {
+    background-color: darkred;
+    color: white;
+    text-align: center;
+}
+
+#move {
+    padding: 5vh;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#paBtn {
+background-color: #479e4a;
+border: none;
+color: white;
+padding: 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 28px;
+margin: 4px 2px;
+border-radius: 50%;
+}
+
+
+/* #ssBtn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 28px;
+    margin: 4px 2px;
+    border-radius: 50%;
+} */
+
+#paBtn {
+    position: relative;
+    left: 105%;
+}
+
+#meme {
+    background: url(../thatPicture.jpg);
+    width: 13%;
+    padding: 19vh;
+    display: flex;
+    position: relative;
+    left: 23%;
+}
